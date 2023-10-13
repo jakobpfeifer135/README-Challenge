@@ -1,9 +1,9 @@
-
+// created a const for each node dependency we use and a generate markdown const to make markdown files instead of html files
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./generateMarkdown');
 
-
+//reference the mini project and utilize the inquirer dependency 
 inquirer
   .prompt([
     {
@@ -54,7 +54,7 @@ inquirer
     },
   ])
   .then((answers) => {
-    // You can create a full URL for the license badge based on the chosen license:
+    // You can create a full URL for the license badge based on the chosen license: these will match based on the users selection and use exact === to make sure the users selection is valid
     if (answers.license === 'MIT') {
       answers.licenseBadge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
     } else if (answers.license === 'Apache 2.0') {
@@ -65,7 +65,7 @@ inquirer
     // Generate the README content using the answers
     const markdownContent = generateMarkdown(answers);
 
-    // Write the content to the README.md file
+    // Write the content to the README.md file, makes the files info be overwritten if re-ran
     fs.writeFileSync('README.md', markdownContent, 'utf8');
 
     console.log('README.md has been generated successfully.');
