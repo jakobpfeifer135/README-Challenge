@@ -1,9 +1,10 @@
 
-# fdsfds
+  
+# README generator
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  <!-- Insert the license badge here -->
 
 ## Description
-fsdfdsdsf
+makes a readme file for future projects
 
 ## Table of Contents
 - [Installation](#installation)
@@ -14,22 +15,22 @@ fsdfdsdsf
 - [Questions](#questions)
 
 ## Installation
-fdsdsffds
+n/a
 
 ## Usage
-dfsdfsdfs
+n/a
 
 ## License
 This project is licensed under the MIT license.
 
 ## Contributions
-sdffds
+shout out to TA and Tutors!
 
 ## Tests
-sfdfds
+n/a
 
 ## Questions
 For questions or feedback, you can contact me via:
-- Email: fsfdsfd
-- GitHub: [fsdsdsfsd](https://github.com/fsdsdsfsd)
+- Email: jakob.d.pfeifer1300@gmail.com
+- GitHub: [jakobpfeifer135](https://github.com/jakobpfeifer135)
   
