@@ -1,81 +1,103 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-
-
-const readmeGenerate = ({ name, location, github, linkedin }) =>
-  `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
-  <title>Document</title>
-</head>
-<body>
-  <header class="p-5 mb-4 header bg-light">
-    <div class="container">
-      <h1 class="display-4">Hi! My name is ${name}</h1>
-      <p class="lead">I am from ${location}.</p>
-      <h3>Example heading <span class="badge bg-secondary">Contact Me</span></h3>
-      <ul class="list-group">
-        <li class="list-group-item">My GitHub username is ${github}</li>
-        <li class="list-group-item">LinkedIn: ${linkedin}</li>
-      </ul>
-    </div>
-  </header>
-</body>
-</html>`;
+const generateMarkdown = require('./generateMarkdown');
 
 inquirer
   .prompt([
     {
       type: 'input',
-      name: 'name',
-      message: 'What is your name?',
+      name: 'title',
+      message: 'Enter the project title: ',
     },
     {
       type: 'input',
-      name: 'location',
-      message: 'Where are you from?',
+      name: 'description',
+      message: 'Enter a project description: ',
     },
     {
       type: 'input',
-      name: 'hobby',
-      message: 'What is your favorite hobby?',
+      name: 'installation',
+      message: 'Enter installation instructions: ',
     },
     {
       type: 'input',
-      name: 'food',
-      message: 'What is your favorite food?',
+      name: 'usage',
+      message: 'Enter usage information: ',
     },
     {
-      type: 'input',
-      name: 'github',
-      message: 'Enter your GitHub Username',
-    },
-    {
-      type: 'input',
-      name: 'linkedin',
-      message: 'Enter your LinkedIn URL.',
+        //list is used instead of input to let the user select the answer inside the terminal from a given array of options
+      type: 'list',
+      name: 'license',
+      message: 'Choose a license:',
+      choices: ['MIT', 'Apache 2.0', 'GPL 3.0', 'Other'],
     },
   ])
   .then((answers) => {
-    const readmeAnswers = readmeGenerate(answers);
-
-    fs.writeFile('README.md', readmeAnswers, (err) =>
-      err ? console.log(err) : console.log('Successfully created README.md!')
-    );
+    //added utf8 after learning about character encoding
+    const markdownContent = generateMarkdown(answers);
+    //tried out implementation of writefilesync instead of just writefile i learned writefilesync is synchronous and writeFile is asynchronous meaning one allows for other things to happen while executing the code.
+    fs.writeFileSync('README.md', markdownContent, 'utf8');
+    //adds a completion message on success
+    console.log('README.md has been created successfully.');
   });
 
-// TODO: Create an array of questions for user input
-const questions = [];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
 
-// TODO: Create a function to initialize app
-function init() {}
 
-// Function call to initialize app
-init();
+
+// const readmeGenerate = ({ projectTitle, description, installation, linkedin }) =>
+
+
+// inquirer
+//   .prompt([
+//     {
+//       type: 'input',
+//       name: 'projectTitle',
+//       message: 'What is the name of your project?',
+//     },
+//     {
+//       type: 'input',
+//       name: 'description',
+//       message: 'write a short description for your project',
+//     },
+//     {
+//       type: 'input',
+//       name: 'tableOfContents',
+//       message: 'What is your favorite hobby?',
+//     },
+//     {
+//       type: 'input',
+//       name: 'installation',
+//       message: 'any installation notes',
+//     },
+//     {
+//       type: 'input',
+//       name: 'usage',
+//       message: 'if applicable add your screenshot of your project directory here',
+//     },
+//     {
+//       type: 'list',
+//       name: 'license',
+//       message: '',
+//     },
+//   ])
+//   .then((answers) => {
+//     const readmeAnswers = readmeGenerate(answers);
+
+//     fs.writeFile('README.md', readmeAnswers, (err) =>
+//       err ? console.log(err) : console.log('Successfully created README.md!')
+//     );
+//   });
+
+// // TODO: Create an array of questions for user input
+// const questions = [];
+
+// // TODO: Create a function to write README file
+// function writeToFile(fileName, data) {}
+
+// // TODO: Create a function to initialize app
+// function init() {}
+
+// // Function call to initialize app
+// init();
